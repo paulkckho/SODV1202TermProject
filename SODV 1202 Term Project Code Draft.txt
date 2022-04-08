@@ -1,0 +1,78 @@
+
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
+/*
+ *  SODV 1202 Introduction to Object Oriented Programming 
+ *  SODV 1202 Term Project - Connect 4 Game 
+ *   Codes and Program designed by   :  Paul K Kho
+ *   Instructor                      :  Mahbub Murshed
+        Due                          :   April 22 2022
+ */  
+
+
+/* 
+ *   This game is designed for two players. Player One will always have the first move.
+ *   Each player will take turns. The first player to connect four in a row wins. 
+ */
+
+namespace SODV_1202_Term_Project
+{
+   
+    public class Connect4Game
+    {
+        private static int rows = 9;
+        private static int cols = 9;
+        private static char[,] Board = new char[rows, cols];
+        private static bool[] cellfull = new bool[cols];
+        private static int Scorestatus;
+        private static char blue;
+        private static char red;
+        private string playerOne;
+        private string playerTwo;
+        private string playerTurn;
+        private string winner;
+        public static void GameBoard()
+        {
+            // Display Initial game board on console 
+            Console.Clear();
+            Console.WriteLine("\t\t\t\t Classic Connect Four Game \n\n");
+
+        }
+
+        public void CalScore()
+        {
+            Scorestatus = 0;
+        }
+
+
+    }
+
+    public class Player
+    {
+        public string PlayerOneName { get; set; }
+        public string PlayerTwoName { get; set; }
+
+    }
+    internal class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Console.WriteLine("SODV 1202 Term Project\n");
+            Console.WriteLine("Connect 4 Game with Object Oriented Programming. \n");
+            Connect4Game.GameBoard();
+            
+            Console.Read();
+        }
+       
+
+    }
+}
+
+
