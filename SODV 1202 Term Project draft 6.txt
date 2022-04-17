@@ -1,0 +1,192 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+/*
+ *  SODV 1202 Introduction to Object Oriented Programming 
+ *  SODV 1202 Term Project - Connect 4 Game 
+ *   Codes and Program designed by   :  Paul K Kho and Nhan Nguyen
+ *   Instructor                      :  Mahbub Murshed
+ *   Due                             :  April 22 2022
+ *
+ *   This game is designed for two players. Player One will always have the first move.
+ *   Each player will take turns. The first player to connect four in a row wins. 
+ *   If no name is enter, default names are Player One and Player Two. The user has the
+ *       option of choosing a game mode: Player vs Player, Computer vs Player, Computer vs Computer
+ */
+
+namespace SODV_1202_Term_Project
+{
+    interface IGameboard
+    {
+        void PlayerSetup();
+        void GameSettings();
+        void GamePlay();
+        void DisplayResults();
+    }
+    internal class PlayerSetUp
+    {
+        internal void PlayerOneSetUp()
+        {
+            Console.WriteLine(" Please enter your name Player One:  ");
+            string player1 = Console.ReadLine();
+            if (player1 == null)
+            {
+                player1 = "Player One.";
+                GameCompute();
+            }
+            else
+                player1 = Console.ReadLine();
+            Console.WriteLine(" {0}, you are the blue chip. You have the first move ", player1);
+        }
+        internal void PlayerTwoSetUp()
+        {
+            Console.WriteLine(" Please enter your name Player Two:  ");
+            string player2 = Console.ReadLine();
+            if (player2 == null)
+            {
+                player2 = "Player Two.";
+                GameCompute();
+            }
+            else
+                player2 = Console.ReadLine();
+            Console.WriteLine("{0}, you are the red chip. You have the next move ", player2);
+        }
+        internal void GameCompute()
+        {
+
+        }
+    }
+
+    internal class GameSettingsBase
+    {
+        public int GameCalculations(char [,] board, string activePlayer)
+        {
+            int dropChoice;
+           
+
+        Console.WriteLine(  " {0}'s turn ", activePlayer);
+            do
+            {
+                Console.WriteLine("Please enter a number between 1 and 7: ");
+                dropChoice = Convert.ToInt32(Console.ReadLine());
+            } while (dropChoice < 1 || dropChoice > 7);
+
+            while (board[1, dropChoice] == 'B' || board[1, dropChoice] == 'R')
+            {
+                Console.WriteLine("That row is full, please enter a new row: ");
+                dropChoice = Convert.ToInt32(Console.ReadLine());
+            }
+
+            return dropChoice;
+        }
+    }
+
+    class GameSettings : GameSettingsBase
+    {
+        public string Player1 { get; set; }
+        public string Player2 { get; set; }
+
+        char[,] board = new char[12, 14];
+        public GameSettings() { }
+        public void GameSetting(string PlayerOne, string PlayerTwo)
+        {
+            PlayerOne = Player1;
+            PlayerOne = Player2;
+        }
+
+        public void GamePlay()
+        {
+            int[] P1chip = { 4 };
+            int[] P2chip = { 4 };
+
+            Console.WriteLine(" Please select a slot between 1 and 9 to deposit your chip. ");
+
+            for (int count = 1; count < 5; count++)
+            {
+                if (P1chip[count] < 1 || P1chip[count] > 5)
+                {
+                    Console.WriteLine("Selected slot is out of bounds. Please try again. ");
+                }
+            }
+        }
+
+        public string PlayerTurns(string playerOne, string playerTwo )
+        {
+            string PlayerTurnsName;
+            
+
+            return null;
+        }
+
+     }
+  
+
+    class Scores
+    {
+        string PlayerOnePos;
+        string PlayerTwoPos;
+        string chip1Pos;
+        string chip2Pos;
+        bool cont; 
+
+        public void GameSettings()
+        {
+            PlayerSetUp p = new PlayerSetUp();
+            p.PlayerOneSetUp();
+            p.PlayerTwoSetUp();
+        }
+       
+        // Compute players moves 
+        bool GameProcess()
+        {
+
+            return false;
+        }
+
+        // Check for winner 
+        internal int CheckWin()
+        {
+
+            return 0;
+        }
+
+        // Display on console
+        public void DisplayResults(char[,] coord)
+        {
+
+        }
+    }
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            int delay = 2000;
+            PlayerSetUp gameplayersetup = new PlayerSetUp();
+            GameSettings ActivePlayer = new GameSettings();
+            string Instructions = "This is a two player game. Each player takes turn dropping a disk into a 9 X 9 game board. \n " +
+              "The first player achieving connecting four disks in sequence, either vertical, horizontal or diagonal wins. \n " +
+              "The game is a draw if all slots are full. The game will reset after thirty seconds.  ";
+
+            // Display Initial game board on console 
+            Console.Clear();
+            Console.WriteLine("\t\t\t\t Classic Connect Four Game \n\n");
+            Console.WriteLine(Instructions);
+            Thread.Sleep(delay);
+            Console.WriteLine("Please press 'Q' to exit or any other key to continue... ");
+            char choice = (char)Console.Read();
+            if (choice == 'q')
+            {
+                Console.WriteLine(" Game's Over. Thank you for visiting. Good bye...");
+            }
+            Thread.Sleep(delay);
+            Console.WriteLine("Let the game begin!\n\n");
+            Console.WriteLine();
+            gameplayersetup.PlayerOneSetUp();
+            gameplayersetup.PlayerTwoSetUp();
+            ActivePlayer.GamePlay();
+        Console.Read();
+        }
+    }
+}
+
